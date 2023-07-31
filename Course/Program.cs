@@ -1,137 +1,504 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Formats.Asn1;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
+using System.Xml.Serialization;
 
-namespace Course
-{
-    class Program
-    {
+namespace Course {
+    class Program {
+        static void Main(string[] args) {
 
-        static void Main(string[] args)
-        {
 
-            Console.WriteLine("Quantos valores você vai digitar? ");
-            int n = int.Parse(Console.ReadLine());
-            int val = 0;
-            int contIn = 0;
-            int contOut = 0;
+           var employeeList = new List<Employee>();
 
-            for(int i = 1; i <= n;  i++)
-            {
-                Console.Write("Digite o {0} valor: ", i);
-                val = int.Parse(Console.ReadLine());
+            Console.WriteLine("How many employees will be registered?");
+            int cont = int.Parse(Console.ReadLine());
 
-                if (val >= 10 && val <= 20)
-                {
-                    contIn++;
-                } else 
-                {
-                    contOut++;
-                }
+            for (var i = 0; i <= cont; i++) {
+                Console.WriteLine("Employee #" + employeeList.Count + 1);
+                Console.Write("Id: ");
+                int id = int.Parse(Console.ReadLine());
+                Console.Write("Nome:");
+                string name = Console.ReadLine();
+                Console.Write("Salary:");
+                double salary = double.Parse(Console.ReadLine());
+
+                employeeList.Add(new Employee(id, name, salary));
             }
 
-            Console.WriteLine(contIn + " in");
-            Console.WriteLine(contOut + " out");
 
-            //Console.WriteLine("Digite um numero: ");
-            //int x = int.Parse(Console.ReadLine());
 
-            //if(x >= 1 && x <= 1000)
-            //{
-            //    for(int i = 1; i <= x; i++)
-            //    {
-            //        if(i % 2 != 0)
-            //        {
-            //            Console.WriteLine(i);
-            //        }
-            //    }
+            Console.WriteLine(employeeList[0]);
+
+            //foreach (var obj in employeeList) {
+            //    Console.WriteLine(obj);
             //}
-            //else
-            //{
-            //    Console.WriteLine("Numero inválido.");
+
+            //employeeList.ForEach(Console.WriteLine);
+
+            //for (int i = 0; i < employeeList.Count; i++) {
+            //    Console.WriteLine(employeeList[i]);
             //}
 
 
 
 
+            //string[] lista = new string[] { "Maria", "João", "José" };
+
+
+            //foreach (string obj in lista) {
+            //    Console.WriteLine(obj);
+            //}
 
 
 
-            //Console.Write("Quantos números inteiros você vai digitar? ");
+            //
+
+
+            //    int a = 10;
+            //    int triple;
+            //    Calculator.Triple(a, out triple);
+            //    Console.WriteLine(a);
+
+
+
+
             //int n = int.Parse(Console.ReadLine());
 
+            //Product[] vect = new Product[n];
 
-            //int soma = 0;
-            //for (int i = 1; i <= n; i++)
-            //{
-            //    Console.Write("Valor #{0}: ", i);
-            //    int valor = int.Parse(Console.ReadLine());
-            //    soma += valor;
+            //for (int i = 0; i < n; i++) { 
+            //    string name = Console.ReadLine();
+            //    double price = double.Parse(Console.ReadLine());
+            //    vect[i] = new Product { Name = name, Price = price };
             //}
 
-            //Console.WriteLine("Soma: " + soma);
+            //double sum = 0.0;
 
-
-
-
-
-            //int alcool = 0;
-            //int gasolina = 0;
-            //int diesel = 0;
-            //Console.WriteLine("Escolha uma opção:");
-            //Console.WriteLine("1 - Alcool");
-            //Console.WriteLine("2 - Gasolina:");
-            //Console.WriteLine("3 - Diesel");
-            //Console.WriteLine("4 - FIM");
-            //Console.WriteLine("  ");
-            //string opc = Console.ReadLine();
-
-            //while (opc != "4")
-            //{
-            //    if (opc == "1")
-            //    {
-            //        alcool++;
-            //    } else if (opc == "2")
-            //    {
-            //        gasolina++;
-            //    } else if (opc == "3")
-            //    {
-            //        diesel++;
-            //    }
-
-            //    Console.WriteLine("Selecione outra opção");
-            //    opc = Console.ReadLine();
-            //    Console.WriteLine("  ");
+            //for (int i = 0; i < n; i++) { 
+            //    sum += vect[i].Price;
             //}
 
-            //Console.WriteLine("MUITO OBRIGADO!");
-            //Console.WriteLine("Alcool: " + alcool);
-            //Console.WriteLine("Gasolina: " + gasolina);
-            //Console.WriteLine("Diesel: " + diesel);
+            //double avg = sum / n;
+
+            //Console.WriteLine("AVERAGE PRICE = " + avg.ToString("F2", CultureInfo.InvariantCulture));
+
+            //Point p;
+            //p.X = 10;
+            //p.Y = 20;
+            //Console.WriteLine(p);
+
+            //p = new Point();
+            //Console.WriteLine(p);
 
 
 
 
+            //ContaBancaria conta = new ContaBancaria();
 
+            //Console.Write("Entre com o número da conta: ");
+            //string numConta = (Console.ReadLine());
 
-            //Console.WriteLine("Digite sua senha: ");
-            //string inputSenha = Console.ReadLine();
-            //string senhaCorreta = "2002";
+            //Console.Write("Entre com o titular da conta: ");
+            //string nome = Console.ReadLine();
 
-            //while(inputSenha != senhaCorreta) {
+            //Console.Write("Haverá deposito inicial (s/n)? ");
+            //string verDepIn = Console.ReadLine();
 
-            //    Console.WriteLine("Senha incorreta, tente novamente: ");
-            //    inputSenha = Console.ReadLine();
+            //if (verDepIn == "s") {
+            //    Console.Write("Entre o valor de depósito inicial: ");
+            //    double depositoInicial = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            //    conta.NumeroConta = numConta;
+            //    conta.Nome = nome;
+            //    conta.DepInicial = depositoInicial;
+            //    conta.Depositar(depositoInicial);
+            //} else {
+            //    conta.NumeroConta = numConta;
+            //    conta.Nome = nome;
+
             //}
 
-            //Console.WriteLine("Logado com sucesso");
+            //Console.WriteLine();
+            //Console.WriteLine("Dados da conta:");
+            //Console.WriteLine(conta);
+
+            //Console.WriteLine("");
+            //Console.Write("Entre com um valor para depósito: ");
+            //double deposito = double.Parse(Console.ReadLine());
+            //conta.Depositar(deposito);
+
+            //Console.WriteLine();
+            //Console.WriteLine("Dados atualizados:");
+            //Console.WriteLine(conta);
+
+            //Console.WriteLine("");
+            //Console.Write("Entre com um valor para saque: ");
+            //double saque = double.Parse(Console.ReadLine());
+            //conta.Sacar(saque);
+
+            //Console.WriteLine();
+            //Console.WriteLine("Dados atualizados:");
+            //Console.WriteLine(conta);
+
+
+
+
+
+
+            //Produto p = new Produto("TV", 500.00, 10);
+
+            //p.Nome = "TV 4k";
+            //Console.WriteLine(p.Nome);
+            //Console.WriteLine(p.Preco);
+            //Console.WriteLine();
+
+
+            //Console.WriteLine("Entre com os dados do produto: ");
+            //Console.Write("Nome: ");
+            //string nome = Console.ReadLine();
+            //Console.Write("Preco: ");
+            //double preco = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+
+            //Produto p = new Produto(nome, preco);
+            //Produto p2 = new Produto();
+            //Produto p3 = new Produto() {
+            //    Nome = "Henrique",
+            //    Preco = 900.0,
+            //    Quantidade = 10
+            //};
+
+
+            //Console.WriteLine();
+            //Console.WriteLine("Dados do produto: " + p);
+            //Console.WriteLine();
+            //Console.Write("Digite o número de produtos a serem adicionado em estoque: ");
+            //int qte = int.Parse(Console.ReadLine());
+            //p.AdicionarProdutos(qte);
+            //Console.WriteLine();
+            //Console.WriteLine("Dados atualizados: " + p);
+            //Console.WriteLine();
+            //Console.Write("Digite o número de produtos a serem removidos do estoque: ");
+            //qte = int.Parse(Console.ReadLine());
+            //p.RemoverProdutos(qte);
+            //Console.WriteLine("Dados atualizados: " + p);
+
+
+
+
+            //Console.Write("Digite o valor da cotação do dólar: ");
+            //double cotacao = double.Parse(Console.ReadLine(),CultureInfo.InvariantCulture);
+            //Console.Write("Digite quantos dólares você quer comprar: ");
+            //double dolares = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+            //Console.WriteLine(ConversorDeMoeda.CalcCotacao(cotacao, dolares).ToString("F2", CultureInfo.InvariantCulture));
+
+
+
+
+
+
+
 
 
 
 
         }
+        //Console.WriteLine("Entre o valor do raio: ");
+        //double raio = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+        //double circ = Calculadora.Circunferencia(raio);
+        //double volume = Calculadora.Volume(raio);
+        //Console.WriteLine("Cincunferencia: " + circ.ToString("F2", CultureInfo.InvariantCulture));
+        //Console.WriteLine("Volume: " + volume.ToString("F2", CultureInfo.InvariantCulture));
+        //Console.WriteLine("Valor de PI" + Calculadora.Pi.ToString("F2", CultureInfo.InvariantCulture));
+
+
+
+
+
+
+        //Aluno aluno = new Aluno();
+
+        //Console.Write("Nome do alunno: ");
+        //Console.ReadLine();
+        //Console.WriteLine("Digite as três notas do aluno: ");
+        //aluno.NotaUm = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+        //aluno.NotaDois = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+        //aluno.NotaTres = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+        ////aluno.CalcNota();
+        //Console.WriteLine("NOTA FINAL = " + aluno.CalcNota().ToString("F2", CultureInfo.InvariantCulture));
+
+        //if (aluno.CalcNota() >= 60)
+        //{
+        //    Console.WriteLine("APROVADO");
+        //}
+        //else {
+        //    Console.WriteLine("REPROVADO");
+        //    Console.WriteLine("FALTARAM " + aluno.NotaRestante().ToString("F2", CultureInfo.InvariantCulture) + " PONTOS");
+        //}
+
+
+
+
+
+        //Funcionario funcionario = new Funcionario();
+        //double porcentagem;
+
+        //Console.Write("Nome: ");
+        //funcionario.Nome = Console.ReadLine();
+        //Console.Write("Salário: ");
+        //funcionario.SalarioBruto = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+        //Console.Write("Imposto: ");
+        //funcionario.Imposto = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+        //Console.WriteLine("Funcionário: " + funcionario);
+
+        //Console.Write("Digite a porcentagem para aumentar o salário: ");
+        //porcentagem = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+        //funcionario.AumentarSalario(porcentagem);
+
+        //Console.WriteLine("Dados atualizados: " + funcionario);
+
+
+
+
+
+        //Retangulo retangulo = new Retangulo();
+
+        //Console.Write("Digite a Largura do retângulo: ");
+        //retangulo.Largura = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+        //Console.WriteLine();
+        //Console.Write("Digite a Altura do retângulo: ");
+        //retangulo.Altura = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+        //Console.WriteLine(retangulo);
+
+
+
+
+
+
+
+
+        //Funcionario func1, func2;
+
+        //func1 = new Funcionario();
+        //func2 = new Funcionario();
+        //double mediaSalario;
+
+        //Console.WriteLine("Digite os dados do primeiro funcionário:");
+        //Console.Write("Nome: ");
+        //func1.Nome = Console.ReadLine();
+        //Console.Write("Salário: ");
+        //func1.Salario = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+        //Console.WriteLine("Digite os dados do segundo funcionário: ");
+        //Console.Write("Nome:");
+        //func2.Nome = Console.ReadLine();
+        //func2.Salario = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+        //mediaSalario = (func1.Salario + func2.Salario) / 2;
+
+        //Console.WriteLine("Salário médio: " + mediaSalario.ToString("F2"), CultureInfo.InvariantCulture);
+
+
+
+
+
+
+
+        //Pessoa p1, p2;
+
+        //p1 = new Pessoa();
+        //p2 = new Pessoa();
+
+
+        //Console.WriteLine("Dados da primeira pessoa:");
+        //Console.Write("Nome:");
+        //p1.Nome = Console.ReadLine();
+        //Console.Write("Idade:");
+        //p1.Idade = int.Parse(Console.ReadLine());
+
+        //Console.WriteLine("Dados da segunda pessoa:");
+        //Console.Write("Nome:");
+        //p2.Nome = Console.ReadLine();
+        //Console.Write("Idade:");
+        //p2.Idade = int.Parse(Console.ReadLine());
+
+        //if (p1.Idade > p2.Idade)
+        //{
+        //    Console.WriteLine(p1.Nome + " é mais velha");
+        //}
+        //else {
+        //    Console.WriteLine(p2.Nome + " é mais velho");
+        //}
+
+
+
+
+
+
+
+
+        //Triangulo x, y;
+
+        //x = new Triangulo();
+        //y = new Triangulo();
+
+        //Console.WriteLine("Entre com as medidas do triangulo X:");
+        //x.A = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+        //x.B = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+        //x.C = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+        //Console.WriteLine("Entre com as medidas do triangulo Y:");
+        //y.A = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+        //y.B = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+        //y.C = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+        ////double areaX = y.Area();
+
+        ////double areaY = x.Area();
+
+        //Console.WriteLine("Area de X = " + x.Area().ToString("F4", CultureInfo.InvariantCulture));
+        //Console.WriteLine("Area de Y = " + y.Area().ToString("F4", CultureInfo.InvariantCulture));
+
+
+        //if (x.Area() > y.Area())
+        //{
+        //    Console.WriteLine("Maior área: X");
+        //}
+
+        //else
+        //{
+        //    Console.WriteLine("Maior área: Y");
+        //};
+
+
+        //Console.WriteLine("Quantos valores você vai digitar? ");
+        //int n = int.Parse(Console.ReadLine());
+        //int val = 0;
+        //int contIn = 0;
+        //int contOut = 0;
+
+        //for(int i = 1; i <= n;  i++)
+        //{
+        //    Console.Write("Digite o {0} valor: ", i);
+        //    val = int.Parse(Console.ReadLine());
+
+        //    if (val >= 10 && val <= 20)
+        //    {
+        //        contIn++;
+        //    } else 
+        //    {
+        //        contOut++;
+        //    }
+        //}
+
+        //Console.WriteLine(contIn + " in");
+        //Console.WriteLine(contOut + " out");
+
+        //Console.WriteLine("Digite um numero: ");
+        //int x = int.Parse(Console.ReadLine());
+
+        //if(x >= 1 && x <= 1000)
+        //{
+        //    for(int i = 1; i <= x; i++)
+        //    {
+        //        if(i % 2 != 0)
+        //        {
+        //            Console.WriteLine(i);
+        //        }
+        //    }
+        //}
+        //else
+        //{
+        //    Console.WriteLine("Numero inválido.");
+        //}
+
+
+
+
+
+
+
+        //Console.Write("Quantos números inteiros você vai digitar? ");
+        //int n = int.Parse(Console.ReadLine());
+
+
+        //int soma = 0;
+        //for (int i = 1; i <= n; i++)
+        //{
+        //    Console.Write("Valor #{0}: ", i);
+        //    int valor = int.Parse(Console.ReadLine());
+        //    soma += valor;
+        //}
+
+        //Console.WriteLine("Soma: " + soma);
+
+
+
+
+
+        //int alcool = 0;
+        //int gasolina = 0;
+        //int diesel = 0;
+        //Console.WriteLine("Escolha uma opção:");
+        //Console.WriteLine("1 - Alcool");
+        //Console.WriteLine("2 - Gasolina:");
+        //Console.WriteLine("3 - Diesel");
+        //Console.WriteLine("4 - FIM");
+        //Console.WriteLine("  ");
+        //string opc = Console.ReadLine();
+
+        //while (opc != "4")
+        //{
+        //    if (opc == "1")
+        //    {
+        //        alcool++;
+        //    } else if (opc == "2")
+        //    {
+        //        gasolina++;
+        //    } else if (opc == "3")
+        //    {
+        //        diesel++;
+        //    }
+
+        //    Console.WriteLine("Selecione outra opção");
+        //    opc = Console.ReadLine();
+        //    Console.WriteLine("  ");
+        //}
+
+        //Console.WriteLine("MUITO OBRIGADO!");
+        //Console.WriteLine("Alcool: " + alcool);
+        //Console.WriteLine("Gasolina: " + gasolina);
+        //Console.WriteLine("Diesel: " + diesel);
+
+
+
+
+
+
+        //Console.WriteLine("Digite sua senha: ");
+        //string inputSenha = Console.ReadLine();
+        //string senhaCorreta = "2002";
+
+        //while(inputSenha != senhaCorreta) {
+
+
+        //    Console.WriteLine("Senha incorreta, tente novamente: ");
+        //    inputSenha = Console.ReadLine();
+        //}
+
+        //Console.WriteLine("Logado com sucesso");
+
+
+
+
+
 
 
 

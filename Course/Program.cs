@@ -12,30 +12,41 @@ namespace Course {
         static void Main(string[] args) {
 
 
-           var employeeList = new List<Employee>();
+            var employeeList = new List<Employee>();
 
             Console.WriteLine("How many employees will be registered?");
             int cont = int.Parse(Console.ReadLine());
 
-            for (var i = 0; i <= cont; i++) {
-                Console.WriteLine("Employee #" + employeeList.Count + 1);
+            for (var i = 1; i <= cont; i++) {
+                Console.WriteLine("Employee #" + i);
                 Console.Write("Id: ");
                 int id = int.Parse(Console.ReadLine());
-                Console.Write("Nome:");
+                Console.Write("Name:");
                 string name = Console.ReadLine();
                 Console.Write("Salary:");
-                double salary = double.Parse(Console.ReadLine());
-
+                double salary = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
                 employeeList.Add(new Employee(id, name, salary));
+                Console.WriteLine("");
             }
 
+            Console.Write("Enter the id that will have salary increase: ");
+            int employeeId = int.Parse(Console.ReadLine());
 
+            Employee emp = employeeList.Find(x => x.Id == employeeId);
+            if (emp != null) {
+                Console.WriteLine("Enter the percentage: ");
+                double percentage = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                emp.IncreaseSalary(percentage);
+            } else {
+                Console.WriteLine("This id does not exist!");
+            }
 
-            Console.WriteLine(employeeList[0]);
+            Console.WriteLine("");
+            Console.WriteLine("Update list of employees: ");
 
-            //foreach (var obj in employeeList) {
-            //    Console.WriteLine(obj);
-            //}
+            foreach (Employee obj in employeeList) {
+                Console.WriteLine(obj);
+            }
 
             //employeeList.ForEach(Console.WriteLine);
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,15 @@ namespace Course {
         }
 
         public void IncreaseSalary(double percentage) { 
-            Salary = Salary * (percentage / 100);
+            Salary += Salary * (percentage / 100);
+        }
+
+        public override string ToString() {
+            return Id
+                + ", "
+                + Name
+                + ", "
+                + Salary.ToString("F2", CultureInfo.InvariantCulture);
         }
 
     }

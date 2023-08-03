@@ -34,7 +34,7 @@ namespace Course {
 
             Employee emp = employeeList.Find(x => x.Id == employeeId);
             if (emp != null) {
-                Console.WriteLine("Enter the percentage: ");
+                Console.Write("Enter the percentage: ");
                 double percentage = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
                 emp.IncreaseSalary(percentage);
             } else {
